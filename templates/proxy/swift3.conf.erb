@@ -1,3 +1,7 @@
 [filter:swift3]
+<% if @lsbdistcodename == 'precise' %>
+use = egg:swift#swift3
+<% else %>
 use = egg:swift3#swift3
+<% end %>
 
