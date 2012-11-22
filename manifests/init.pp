@@ -33,9 +33,14 @@ class swift(
     ensure => $package_ensure,
   }
 
-  package { 'swiftclient':
-    name   => $::swift::params::client_package,
-    ensure => $package_ensure,
+  # Swift client included in the 'swift' package in precise
+  # python-swiftclient does not exist
+  # http://packages.ubuntu.com/search?keywords=python-swiftclient
+  if $::lsbdistcodename != 'precise' {
+    package { 'swiftclient':
+      name   => $::swift::params::client_package,
+      ensure => $package_ensure,
+    }
   }
 
   File { owner => 'swift', group => 'swift', require => Package['swift'] }
