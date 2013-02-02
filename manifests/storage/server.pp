@@ -59,7 +59,7 @@ define swift::storage::server(
     inline_template(
       "<%=
         (pipeline - ['${type}-server']).collect do |x|
-          'Swift::Storage::Filter::' + x + '[${type}]'
+          'Swift::Storage::Filter::' + x.capitalize + '[${type}]'
         end.join(',')
       %>"), ',')
 
